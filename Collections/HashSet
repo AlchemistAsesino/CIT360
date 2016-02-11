@@ -1,0 +1,80 @@
+import java.util.HashSet;
+public class HashSetExample {
+    public static void main(String args[]) {
+        // HashSet declaration
+        HashSet<String> hset =
+                new HashSet<String>();
+
+        //Happy Path Adding elements to the HashSet
+        hset.add("Roadster");
+        hset.add("Model S");
+        hset.add("Model X");
+        hset.add("Model 3");
+
+        //Displaying HashSet elements
+        System.out.println(hset);
+        System.out.println();
+
+        //Nasty Path adding a null to the HashSet
+        hset.add(null);
+        System.out.println(hset);
+        System.out.println();
+
+        //Nasty Path trying to add a duplicate object which doesn't work because hashset overwrites duplicates.
+        hset.add(null);
+        hset.add("Roadster");
+        System.out.println(hset);
+        System.out.println();
+
+        //Happy Path returns a shallow copy of this HashSet instance: the elements themselves are not cloned.
+        System.out.println(hset.clone());
+        System.out.println();
+
+        //Happy Path returns true if value is in the hashset
+        System.out.println(hset.contains("Roadster"));
+        System.out.println();
+
+        //Nasty Path returns tru because the null exist
+        System.out.println(hset.contains(null));
+        System.out.println();
+
+        //Happy Path returns false because the set is not empty
+        System.out.println(hset.isEmpty());
+        System.out.println();
+
+        //Happy Path create new empty set
+        HashSet<String> eset =
+                new HashSet<String>();
+
+        //Happy Path returns true because the set is empty
+        System.out.println(eset.isEmpty());
+        System.out.println();
+
+        //Happy Path prints the size of the set
+        System.out.println(hset.size());
+        System.out.println();
+
+        //Happy Path remove the Roadster
+        hset.remove("Roadster");
+        System.out.println(hset);
+        System.out.println(hset.size());
+        System.out.println();
+
+        //Nasty Path remove something that doesn't exist
+        hset.remove("Mod 3");
+        System.out.println(hset);
+        System.out.println(hset.size());
+        System.out.println();
+
+        //Nasty Path remove the null
+        hset.remove(null);
+        System.out.println(hset);
+        System.out.println(hset.size());
+        System.out.println();
+
+        //Happy Path clears the set
+        hset.clear();
+        System.out.println(hset);
+        System.out.println(hset.size());
+    }
+}
