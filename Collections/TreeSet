@@ -1,1 +1,107 @@
+import java.util.*;
 
+public class TreeSetExample {
+
+    public static void main(String args[]) {
+        // Create a tree set
+        TreeSet vehicles = new TreeSet();
+        // Add elements to the tree set
+        vehicles.add("Camaro");
+        vehicles.add("Colorado");
+        vehicles.add("Cruze");
+        vehicles.add("Malibu");
+        vehicles.add("Impala");
+        vehicles.add("Silverado");
+        vehicles.add("Spark");
+        System.out.println(vehicles);
+        System.out.println();
+
+        //Nasty Path add a null into the tree set which causes a null pointer exception
+        try
+        {
+            System.out.println(vehicles.add(null));
+            System.out.println(vehicles);
+        }
+        catch(NullPointerException e)
+        {
+            System.out.println("Null Pointer Exception Caught continue code");
+            System.out.println();
+        }
+
+        //Nasty Path add a 1 into the tree set.
+        vehicles.add("1");
+        System.out.println(vehicles);
+        System.out.println();
+
+        //Happy Path print the tree set in reverse order
+        System.out.println(vehicles.descendingSet());
+        System.out.println();
+
+        //Happy Path print the object that is higher in the tree set then the object listed.
+        System.out.println(vehicles.higher("Malibu"));
+        System.out.println();
+
+        //Nasty Path print the object that is higher in the tree set then the object listed
+        // which is null because the object is already the highest.
+        System.out.println(vehicles.higher("Spark"));
+        System.out.println();
+
+        //Nasty Path print the object that is higher in the tree set then the object listed
+        // empty string is lower then anything on the list so it shows the first object.
+        System.out.println(vehicles.higher(""));
+        System.out.println();
+
+        vehicles.add("-");
+        System.out.println(vehicles);
+        System.out.println();
+
+        //Happy Path print the first thing in the list which is the -
+        System.out.println(vehicles.first());
+        System.out.println();
+
+        //Happy Path find the first object in the set and remove it
+        System.out.println(vehicles.pollFirst());
+        System.out.println();
+        System.out.println(vehicles);
+        System.out.println();
+
+        //Happy Path find the last object in the set and remove it
+        System.out.println(vehicles.pollLast());
+        System.out.println();
+        System.out.println(vehicles);
+        System.out.println();
+
+        //Nasty Path create a new empty tree set to test pollLast and pollFirst on
+        TreeSet emptyVehicles = new TreeSet();
+        System.out.println(emptyVehicles.pollLast());
+        System.out.println();
+        System.out.println(emptyVehicles.pollFirst());
+        System.out.println();
+
+        //Happy Path print the object and everything in the tree after the value
+        System.out.println(vehicles.tailSet("Cruze"));
+        System.out.println();
+
+        System.out.println(vehicles.size());
+        System.out.println();
+
+        //Happy Path
+        vehicles.remove("Camaro");
+        System.out.println(vehicles);
+        System.out.println();
+        System.out.println(vehicles.size());
+        System.out.println();
+
+        //Nasty Path remove something that is not there
+        vehicles.remove("5");
+        System.out.println(vehicles.size());
+        System.out.println();
+
+        //Happy Path remove everthing from the tree
+        vehicles.clear();
+        System.out.println(vehicles);
+        System.out.println(vehicles.size());
+
+
+    }
+}
