@@ -1,0 +1,130 @@
+import java.util.HashMap;
+
+
+public class HashMapExample {
+
+    public static void main(String[] args) {
+
+        HashMap vehicles = new HashMap();
+
+        // Happy Path Add some vehicles.
+        vehicles.put("Impala", 1964);
+        vehicles.put("Mustang", 1965);
+        vehicles.put("Camaro", 1969);
+        vehicles.put("Charger", 1969);
+
+        System.out.println("Total vehicles: " + vehicles.size());
+
+        // Happy Path Print out a list of the vehicles and their values
+        for(Object key: vehicles.keySet())
+        System.out.println(key + " - " + vehicles.get(key));
+        System.out.println();
+
+        //Print out the vehicle year.
+        System.out.println("The Impala is a "
+                + vehicles.get("Impala") + "\n");
+
+                // Clear all values.
+        vehicles.clear();
+
+        //Nasty Path add in a vehicle with with a null year and string values
+        vehicles.put("Frontier", "2000");
+        vehicles.put("Escape", "1993");
+        vehicles.put("Malibu", null);
+
+        for(Object key: vehicles.keySet())
+            System.out.println(key + " - " + vehicles.get(key));
+        System.out.println();
+
+        System.out.println("The Malibu is a "
+                + vehicles.get("Malibu") + "\n");
+
+        // Clear all values.
+        vehicles.clear();
+
+        //Nasty Path add in a null vehicle with with a year
+        vehicles.put("Skyline", 1985);
+        vehicles.put("Camry", 1995);
+        vehicles.put(null, 1954);
+
+        for(Object key: vehicles.keySet())
+            System.out.println(key + " - " + vehicles.get(key));
+        System.out.println();
+
+        System.out.println("The null is a "
+                + vehicles.get(null) + "\n");
+
+        System.out.println(vehicles);
+        System.out.println();
+
+
+        //Nasty Path add in a null vehicle and null year this replaces the null vehicle from the last Nasty Path
+        vehicles.put(null, null);
+
+        System.out.println("The null is a "
+                + vehicles.get(null) + "\n");
+
+        System.out.println(vehicles);
+        System.out.println();
+
+        //Nasty Path trys to pull a value from a non existent key
+        System.out.println(vehicles.get("Model A"));
+        System.out.println();
+
+        // Nasty Path this prints my vehicle message multiple times because it runs the print till it runs out vehicles
+        // in the map cause I used a for command where I shouldn't have
+        for(Object key: vehicles.keySet())
+        System.out.println("The Camry is a "
+                + vehicles.get("Camry") + "\n");
+
+        //Nasty Path adding a empty string value into the map
+        vehicles.put("Model T", "");
+        System.out.println(vehicles);
+        System.out.println();
+
+
+        //Happy path print true if the Value and the Key are in the Map
+        // it will print false for the Escape since it has been cleared
+        System.out.println(vehicles.containsKey("Escape"));
+        System.out.println();
+
+        //Prints true since it finds the value
+        System.out.println(vehicles.containsValue(1985));
+        System.out.println();
+
+        //Nasty Path prints true because it does find a null in the hashmap
+        System.out.println(vehicles.containsKey(null));
+        System.out.println();
+
+        // Print the size of the hash map
+        System.out.println("The Hash Map has " + vehicles.size() + " Vehicles");
+        System.out.println();
+
+        //Happy Path remove a key value
+        vehicles.remove("Camry");
+        System.out.println("Camry has been removed");
+        System.out.println();
+
+        // Print the size of the hash map
+        System.out.println("The Hash Map has " + vehicles.size() + " Vehicles");
+        System.out.println();
+
+        //Nasty Path remove a key value that doesn't exist
+        vehicles.remove("Escape");
+        System.out.println("Escape was not removed!");
+        System.out.println();
+
+        // Print the size of the hash map
+        System.out.println("The Hash Map has " + vehicles.size() + " Vehicles");
+        System.out.println();
+
+        // Nasty Path removes the null
+        vehicles.remove(null);
+        System.out.println("Null has been removed");
+        System.out.println();
+
+        // Print the size of the hash map
+        System.out.println("The Hash Map has " + vehicles.size() + " Vehicles");
+        System.out.println();
+    }
+}
