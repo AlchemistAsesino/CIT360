@@ -1,0 +1,78 @@
+// This is the View class, it displays the results
+
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class CalculatorView extends JFrame{
+
+    private JLabel kilowattLabel = new JLabel("Power usage in Kilowatt per day");
+    private JTextField powerUsage  = new JTextField(10);
+    private JLabel panelLabel = new JLabel("Panel Type 200w 400w");
+    private JTextField panelType = new JTextField(10);
+    private JButton calculateButton = new JButton("Calculate");
+    private JLabel amountLabel = new JLabel("Amount of panels needed");
+    private JTextField calculateSolution = new JTextField(10);
+
+    CalculatorView(){
+
+        // Sets up the view
+
+        JPanel calcPanel = new JPanel();
+
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(400, 200);
+        //Panel
+        calcPanel.add(kilowattLabel);
+        calcPanel.add(powerUsage);
+        calcPanel.add(panelLabel);
+        calcPanel.add(panelType);
+        calcPanel.add(calculateButton);
+        calcPanel.add(amountLabel);
+        calcPanel.add(calculateSolution);
+
+        this.add(calcPanel);
+
+    }
+
+    public int getPowerUsage(){
+
+        return Integer.parseInt(powerUsage.getText());
+
+    }
+
+    public int getPanelType(){
+
+        return Integer.parseInt(panelType.getText());
+
+    }
+
+    public int getCalculateSolution(){
+
+        return Integer.parseInt(calculateSolution.getText());
+
+    }
+
+    public void setCalculateSolution(int solution){
+
+        calculateSolution.setText(Integer.toString(solution));
+
+    }
+
+    // Execute method
+
+    void panelCalculateListener(ActionListener listenForCalcButton){
+
+        calculateButton.addActionListener(listenForCalcButton);
+
+    }
+
+    //If no numbers are typed, error message appears
+
+    void displayErrorMessage(String errorMessage){
+
+        JOptionPane.showMessageDialog(this, errorMessage);
+
+    }
+
+}
