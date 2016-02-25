@@ -1,0 +1,21 @@
+// The Model performs all the calculations needed
+
+public class CalculatorModel {
+
+    // Calculate amount of Panels needed
+    private int calculatePanels;
+
+    public void calculateAmountPanels(int powerUsage, int panelType){
+        // Power usage in Kilowatts * 1000 to get Watts and then divide it by the
+        // type of panel and the hours of good Sunlight.
+        calculatePanels = (powerUsage * 1000) / (panelType * 6);
+
+    }
+
+    public int getcalculatePanels(){
+
+        return calculatePanels;
+
+    }
+
+}
