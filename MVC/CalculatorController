@@ -9,6 +9,50 @@ public class CalculatorController {
     private CalculatorView theView;
     private CalculatorModel theModel;
 
+    // Getters and Setters
+
+    public int getPowerUsage(){
+
+        return Integer.parseInt(theView.powerUsage.getText());
+
+    }
+
+    public int getPanelType(){
+
+        return Integer.parseInt(theView.panelType.getText());
+
+    }
+
+    public int getCalculateSolution(){
+
+        return Integer.parseInt(theView.calculateSolution.getText());
+
+    }
+
+    public void setCalculateSolution(int solution){
+
+        theView.calculateSolution.setText(Integer.toString(solution));
+
+    }
+
+    // Execute method
+
+    void panelCalculateListener(ActionListener listenForCalcButton){
+
+        theView.calculateButton.addActionListener(listenForCalcButton);
+
+    }
+
+
+    // Does the Calculation for the Amount of Solar Panels
+    public void calculateAmountPanels(int powerUsage, int panelType){
+        // Power usage in Kilowatts * 1000 to get Watts and then divide it by the
+        // type of panel and the hours of good Sunlight.
+
+        theModel.calculatePanels = (powerUsage * 1000) / (panelType * 6);
+
+    }
+
     public CalculatorController(CalculatorView theView, CalculatorModel theModel) {
         this.theView = theView;
         this.theModel = theModel;
@@ -16,7 +60,7 @@ public class CalculatorController {
         // Tell the View that when ever the calculate button
         // is clicked to execute the Model
 
-        this.theView.panelCalculateListener(new CalculateListener());
+        this.panelCalculateListener(new CalculateListener());
 
     }
 
@@ -25,20 +69,19 @@ public class CalculatorController {
 
         public void actionPerformed(ActionEvent e) {
 
-            int powerUsage, panelType = 0;
-
+            int powerUsage, panelType;
 
 
             try{
 
-                powerUsage = theView.getPowerUsage();
-                panelType = theView.getPanelType();
+                powerUsage = getPowerUsage();
+                panelType = getPanelType();
 
 
-                theModel.calculateAmountPanels(powerUsage, panelType);
+                calculateAmountPanels(powerUsage, panelType);
 
 
-                theView.setCalculateSolution(theModel.getcalculatePanels());
+                setCalculateSolution(theModel.getcalculatePanels());
 
             }
 
@@ -46,7 +89,7 @@ public class CalculatorController {
 
                 System.out.println(ex);
 
-                theView.displayErrorMessage("You Need to Enter 2 Integers");
+                theView.displayErrorMessage("You need to enter numbers into both boxes");
 
             }
 
