@@ -1,0 +1,27 @@
+
+import java.text.NumberFormat;
+import java.util.HashMap;
+
+
+public class WindHandler implements AChandler {
+
+    public void handleIt(HashMap data)  {
+
+        try {
+            HashMap d1 = data;
+            System.out.println(); //blank line
+            System.out.println("Good Choice!");
+            HashMap d2 = (HashMap) data;
+            int numberAmount = (Integer) d2.get("amount");
+            double totalAmount = numberAmount * (Double) d2.get("windPrice");
+
+            NumberFormat formatter = NumberFormat.getCurrencyInstance();
+            System.out.println("It will cost you " + formatter.format(totalAmount) + " per year until your system is paid" +
+                    " off and then your energy will be free.");
+            System.out.println(); //blank line
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+}
