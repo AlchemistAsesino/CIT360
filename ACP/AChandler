@@ -1,0 +1,9 @@
+
+import java.util.HashMap;
+
+//sets
+public interface AChandler {
+
+    void handleIt(HashMap data) ;
+
+}
