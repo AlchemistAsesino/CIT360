@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class TreeSetExample {
 
@@ -40,6 +42,20 @@ public class TreeSetExample {
         //Happy Path print the object that is higher in the tree set then the object listed.
         System.out.println(vehicles.higher("Malibu"));
         System.out.println();
+
+        //descendingset and the higher together will that work?
+
+        try
+        {
+            //Nasty null into .higher
+            System.out.println(vehicles.higher(null));
+            System.out.println();
+        }
+        catch(NullPointerException e) {
+            System.out.println("Null Pointer Exception Caught continue code");
+            System.out.println();
+        }
+
 
         //Nasty Path print the object that is higher in the tree set then the object listed
         // which is null because the object is already the highest.
@@ -101,6 +117,31 @@ public class TreeSetExample {
         vehicles.clear();
         System.out.println(vehicles);
         System.out.println(vehicles.size());
+        System.out.println();
+
+        //intersection and union
+        Set<Integer> a = new TreeSet<Integer>(Arrays.asList(new Integer[]{1,3,8,9,10}));
+        Set<Integer> b = new TreeSet<Integer>(Arrays.asList(new Integer[]{3,5,6,8,9,11}));
+
+        //union
+        Set<Integer> c = new TreeSet<Integer>(a);
+        c.addAll(b);
+        System.out.println(c);
+
+        //intersection
+        Set<Integer> d = new TreeSet<Integer>(a);
+        d.retainAll(b);
+        System.out.println(d);
+
+        //difference
+        Set<Integer> e = new TreeSet<Integer>(a);
+        e.removeAll(b);
+        System.out.println(e);
+
+//reverse
+        List<Integer> list = new ArrayList<Integer>(a);
+        java.util.Collections.reverse(list);
+        System.out.println(list);
 
 
     }
