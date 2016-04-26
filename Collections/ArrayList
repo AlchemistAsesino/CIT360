@@ -17,6 +17,32 @@ public class ArrayListExample {
         System.out.println(vehicleArrayList);
         System.out.println(); //print a blank line
 
+        try
+        {
+            //Nasty add at index 10 which is higher then the array goes.
+            vehicleArrayList.add(10,"Tracker");
+            System.out.println(vehicleArrayList);
+            System.out.println();
+        }
+        catch(IndexOutOfBoundsException ex)
+        {
+            System.out.println("IndexOutOfBoundsException Caught continue code");
+            System.out.println();
+        }
+
+        try
+        {
+            //Nasty add at index -5  which is below the index of the array
+            vehicleArrayList.add(-5,"Tracker");
+            System.out.println(vehicleArrayList);
+            System.out.println();
+        }
+        catch(IndexOutOfBoundsException ex)
+        {
+            System.out.println("IndexOutOfBoundsException Caught continue code");
+            System.out.println();
+        }
+
         vehicleArrayList.clear();
 
         //Nasty Path added a empty string
