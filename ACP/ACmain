@@ -11,11 +11,9 @@ public class ACmain {
         ApplicationController delegate = new ApplicationController();
 
 
-        delegate.handleCommand("Solar", new SolarHandler());
+
         delegate.handleCommand("solar", new SolarHandler());
-        delegate.handleCommand("Wind", new WindHandler());
         delegate.handleCommand("wind", new WindHandler());
-        delegate.handleCommand("Water", new WaterHandler());
         delegate.handleCommand("water", new WaterHandler());
 
         try {
@@ -29,18 +27,16 @@ public class ACmain {
             System.out.println("------------");
             System.out.print("Which energy would you like to use?:");
             String command = input.nextLine();
+            command = command.toLowerCase();
             System.out.print("What is your average energy use per year?:");
             int amount = input.nextInt();
 
 
-
             HashMap data = new HashMap();
-            data.put("amount",amount);
-            data.put("solarPrice",.125); //Price per Kilowatt
+            data.put("amount", amount);
+            data.put("solarPrice", .125); //Price per Kilowatt
             data.put("windPrice", .196);
             data.put("waterPrice", .083);
-
-
 
             delegate.handleRequest(command, data);
 
@@ -49,8 +45,6 @@ public class ACmain {
             System.out.println("Please enter a correct Energy");
 
         }
-
-
 
 
 
