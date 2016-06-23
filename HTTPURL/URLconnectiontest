@@ -1,0 +1,49 @@
+package com.example.owner.servlets;
+
+import java.net.HttpURLConnection;
+import java.net.URL; //URL library
+import java.util.HashMap;
+import org.JSONInputStream;
+
+public class URLConnectionTest {
+
+	@SuppressWarnings("unchecked") //surpress compile warnings about unchecked generic operations
+	public static void main(String[] args) {
+
+		try {
+				//Weather API openweather.org/api   ID5596475 = Idaho Falls  My App ID from openweather APPID=189be7196815af6b604b5d052154c248
+			URL url = new URL("http://api.openweathermap.org/data/2.5/weather?id=5596475&APPID=189be7196815af6b604b5d052154c248"); //weather for rexburg
+			HttpURLConnection link = (HttpURLConnection) url.openConnection(); //open link
+			JSONInputStream weatherStream = new JSONInputStream(link.getInputStream());
+			HashMap<String, ?> jsonWeather = (HashMap<String, ?>) weatherStream.readObject();
+			Weather theWeather = new Weather(jsonWeather); //weather class 
+			printWeather(theWeather);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		
+		}
+
+	}
+
+
+	private static void printWeather(Weather theWeather) {
+
+		System.out.println();
+
+		System.out.println("City: " + theWeather.getCityName()); //get city name
+		System.out.println("Current Temperature: " + convertKelvinToFahrenheit(theWeather.getCurrentTemp())); //get curent temp b converting into F
+		System.out.println("Low Temperature: " + convertKelvinToFahrenheit(theWeather.getLowTemp())); //get low temp
+		System.out.println("High Temperature: " + convertKelvinToFahrenheit(theWeather.getHighTemp())); //get high temp
+
+	}
+	
+	private static long convertKelvinToFahrenheit(double kelvin) { //algorithm for kelvin to fahrenheit
+		
+		long fahrenheit = (long) Math.round((kelvin - 273.15) * 1.8 + 32);
+		return fahrenheit;
+		
+	}
+	
+}
