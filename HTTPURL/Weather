@@ -1,0 +1,46 @@
+package com.example.owner.servlets;
+
+import java.util.HashMap;
+
+
+public class Weather {
+
+	private String cityName;
+	private double currentTemp;
+	private double lowTemp;
+	private double highTemp;
+
+
+	public Weather() {
+		
+	}
+	
+	@SuppressWarnings("unchecked") //surpress compile warnings about unchecked generic operations
+	public Weather(HashMap<String, ?> weatherHashMap) { //class string
+		
+		HashMap<String, ?> mainBlock = (HashMap<String, ?>) weatherHashMap.get("main");
+		this.cityName = (String)weatherHashMap.get("name"); //calling from website
+		this.currentTemp = (Double)mainBlock.get("temp");
+		this.lowTemp = (Double)mainBlock.get("temp_min");
+		this.highTemp = (Double)mainBlock.get("temp_max");
+
+	}
+
+	public String getCityName() {
+		return this.cityName;
+	}
+
+	public double getCurrentTemp() {
+		return this.currentTemp;
+	}
+
+	public double getLowTemp() {
+		return this.lowTemp;
+	}
+
+	public double getHighTemp() {
+		return this.highTemp;
+	}
+
+
+}
